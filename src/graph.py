@@ -1,8 +1,19 @@
 class Edge:
-    def __init__(self, src, dest, weight=0):
+    def __init__(self, src, dest, label='', weight=0, directed=False):
         self.src = src
         self.dest = dest
         self.weight = weight
+        self.directed = directed
+        if len(label) == 0:
+            if directed:
+                self.label = src + '->' + dest
+            else:
+                self.label = src + '-' + dest
+        else:
+            self.label = label
+
+    def __repr__(self):
+        return self.label
 
 
 class Graph:
@@ -37,15 +48,14 @@ class Graph:
                     single_vertex: []
                 })
 
-    def add_edge(self, src, dest, weight=0):
-        if self.__weighted:
-            if weight != 0:
-                raise TypeError("Adding edge weight to an unweighted graph")
+    def add_edge(self, src, dest, label='', weight=0):
+        if not self.__weighted and weight != 0:
+            raise TypeError("Adding edge weight to an unweighted graph")
         else:
-            edge = Edge(src, dest, weight)
-            self.__adj_list[src] = edge
+            edge = Edge(src, dest, label, weight)
+            self.__adj_list[src].append(edge)
             if not self.__directed:
-                self.__adj_list[dest] = edge
+                self.__adj_list[dest].append(edge)
 
     def __str__(self):
         return str(self.__adj_list)
