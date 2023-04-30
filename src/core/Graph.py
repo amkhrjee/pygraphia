@@ -65,13 +65,26 @@ class Graph:
     def is_connected(self) -> bool:
         from algorithms.dfs import dfs
         list_of_vertices = set(self.__adj_list.keys())
-        print("All Vertices = " + str(list_of_vertices))
         visited = set()
         dfs(self, next(iter(self.__adj_list)), visited)
         if visited == list_of_vertices:
             return True
         else:
             return False
+
+    def components_count(self) -> int:
+        from algorithms.dfs import dfs
+        start_vertex = next(iter(self.__adj_list))
+        temp_vertices = [start_vertex]
+        list_of_vertices = set(self.__adj_list.keys())
+        for each_vertex in temp_vertices:
+            visited = set()
+            dfs(self, each_vertex, visited)
+            left_out_vertices = [
+                x for x in list_of_vertices if x not in visited]
+            if len(left_out_vertices) > 0:
+                temp_vertices.append(next(iter(left_out_vertices)))
+        return len(temp_vertices)
 
     def __str__(self):
         return str(self.__adj_list)

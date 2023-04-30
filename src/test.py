@@ -25,4 +25,5 @@ if test_graph.is_connected():
     print('Connected')
 else:
     print('Not connected')
+print(test_graph.components_count())
 # print(test_graph)
