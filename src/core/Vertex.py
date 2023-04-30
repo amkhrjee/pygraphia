@@ -1,14 +1,15 @@
 class Vertex:
+    incoming_edges = []
+    outgoing_edges = []
+    neighbors = []
+
     def __init__(self,
                  label: str = '',
-                 incoming_edges: list = [],
-                 outgoing_edges: list = [],
                  directed: bool = False):
         self.label = label
-        self.incoming_edges = incoming_edges
-        self.outgoing_edges = outgoing_edges
-        self.indegree = len(incoming_edges)
-        self.outdegree = len(outgoing_edges)
+        self.indegree = len(self.incoming_edges)
+        self.outdegree = len(self.outgoing_edges)
+        self.directed = directed
         if directed:
             self.degree = self.indegree + self.outdegree
         else:
