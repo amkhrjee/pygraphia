@@ -21,4 +21,8 @@ test_graph.add_edge(v3, v4)
 visited = set()
 dfs(test_graph, v0, visited)
 print(visited)
+if test_graph.is_connected():
+    print('Connected')
+else:
+    print('Not connected')
 # print(test_graph)

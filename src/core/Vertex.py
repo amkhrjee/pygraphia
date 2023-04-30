@@ -17,3 +17,13 @@ class Vertex:
 
     def __repr__(self):
         return self.label
+
+    def __eq__(self, __value: object) -> bool:
+        if isinstance(__value, Vertex):
+            if __value.label == self.label:
+                return True
+        else:
+            return False
+
+    def __hash__(self) -> int:
+        return hash(self.label)
