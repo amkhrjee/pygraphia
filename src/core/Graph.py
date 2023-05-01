@@ -101,12 +101,7 @@ class Graph:
         return len(temp_vertices)
 
     def is_regular(self) -> bool:
-        list_of_vertices = list(self.__adj_list.keys())
-        # return all(vertex.degree == next(iter(list_of_vertices)).degree for vertex in list_of_vertices)
-        for each_vertex in list_of_vertices:
-            incoming_edges = each_vertex.incoming_edges
-            print(str(incoming_edges))
-            print(each_vertex.degree)
+        return all(list(x.degree == next(iter(self.vertex_list)).degree for x in self.vertex_list))
 
     # this is different from a cyclic graph
     # def is_cycle_graph(self) -> bool:

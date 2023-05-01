@@ -28,11 +28,11 @@ test_graph.add_edge(v3, v4)
 # else:
 #     print('Not connected')
 # print(test_graph.components_count())
-# if (test_graph.is_regular()):
-#     print('Regular')
-# else:
-#     print('Not Regular')
-# # print(test_graph)
+if (test_graph.is_regular()):
+    print('Regular')
+else:
+    print('Not Regular')
+# print(test_graph)
 
 # print the vertex sets
 for vertex in test_graph.vertex_list:
