@@ -2,6 +2,7 @@ from core.Vertex import Vertex
 from core.Edge import Edge
 from core.Graph import Graph
 from algorithms.dfs import dfs
+from algorithms.bfs import bfs
 
 v0 = Vertex('0')
 v1 = Vertex('1')
@@ -20,13 +21,17 @@ test_graph.add_edge(v0, v3)
 test_graph.add_edge(v3, v4)
 # test_graph.add_edge(v3, vTest)
 
-# visited = set()
-# dfs(test_graph, v0, visited)
-# print(visited)
-# if test_graph.is_connected():
-#     print('Connected')
-# else:
-#     print('Not connected')
+visited_bfs = []
+bfs(test_graph, v0, visited_bfs)
+print(visited_bfs)
+
+visited_dfs = []
+dfs(test_graph, v0, visited_dfs)
+print(visited_dfs)
+if test_graph.is_connected:
+    print('Connected')
+else:
+    print('Not connected')
 # print(test_graph.components_count())
 if (test_graph.is_regular):
     print('Regular')
@@ -36,4 +41,4 @@ else:
 
 # print the vertex sets
 for vertex in test_graph.vertex_list:
-    print(vertex,  " = ", vertex.edges)
+    print(vertex,  " = ", vertex.neighbors)

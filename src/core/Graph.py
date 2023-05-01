@@ -96,10 +96,9 @@ class Graph:
     @property
     def is_connected(self) -> bool:
         from algorithms.dfs import dfs
-        list_of_vertices = set(self.__adj_list.keys())
-        visited = set()
-        dfs(self, next(iter(self.__adj_list)), visited)
-        if visited == list_of_vertices:
+        visited = []
+        dfs(self, next(iter(self.vertex_list)), visited)
+        if set(visited) == set(self.vertex_list):
             return True
         else:
             return False
