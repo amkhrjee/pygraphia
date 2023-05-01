@@ -1,6 +1,8 @@
 from .Vertex import Vertex
 from .Edge import Edge
 
+# Helpful for graph theory jargon: https://en.wikipedia.org/wiki/Glossary_of_graph_theory
+
 
 class Graph:
 
@@ -138,10 +140,11 @@ class Graph:
 
     @property
     def is_tree(self) -> bool:
-        if self.is_connected and not self.is_cyclic:
-            return True
-        else:
-            return False
+        return self.is_connected and not self.is_cyclic
+
+    @property
+    def is_eulerian(self) -> bool:
+        return self.is_connected and all(list(x.degree // 2 == 0 for x in self.vertex_list))
 
     def __str__(self):
         return str(self.__adj_list)

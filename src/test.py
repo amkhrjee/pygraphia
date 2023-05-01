@@ -46,6 +46,11 @@ if (test_graph.is_tree):
     print('Tree')
 else:
     print('Not a tree')
+
+if (test_graph.is_eulerian):
+    print('Eulerian')
+else:
+    print('Not Eulerian')
 # print the vertex sets
 for vertex in test_graph.vertex_list:
     print(vertex,  " = ", vertex.neighbors)
