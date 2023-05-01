@@ -15,11 +15,6 @@ class Graph:
                 self.__adj_list.update({
                     each_vertex: []
                 })
-    # properties
-
-    @property
-    def vertex_list(self) -> list[Vertex]:
-        return list(self.__adj_list)
 
     # methods
 
@@ -60,32 +55,6 @@ class Graph:
         self.__adj_list[src].append(dest)
         self.__adj_list[dest].append(src)
 
-    def is_regular(self) -> bool:
-        if all(x.degree ==
-               list(self.__adj_list.keys())[0].degree
-               for x in self.__adj_list.keys()):
-            return True
-        else:
-            return False
-
-    def is_complete(self) -> bool:
-        total_vertices = len(self.__adj_list)
-        total_edges = sum(len(self.__adj_list[x] for x in self.__adj_list))
-        if total_edges == total_vertices*(total_vertices - 1)/2:
-            return True
-        else:
-            return False
-
-    def is_connected(self) -> bool:
-        from algorithms.dfs import dfs
-        list_of_vertices = set(self.__adj_list.keys())
-        visited = set()
-        dfs(self, next(iter(self.__adj_list)), visited)
-        if visited == list_of_vertices:
-            return True
-        else:
-            return False
-
     def components_count(self) -> int:
         from algorithms.dfs import dfs
         start_vertex = next(iter(self.__adj_list))
@@ -100,13 +69,56 @@ class Graph:
                 temp_vertices.append(next(iter(left_out_vertices)))
         return len(temp_vertices)
 
+    # properties
+
+    @property
+    def vertex_list(self) -> list[Vertex]:
+        return list(self.__adj_list)
+
+    @property
+    def is_regular(self) -> bool:
+        if all(x.degree ==
+               list(self.__adj_list.keys())[0].degree
+               for x in self.__adj_list.keys()):
+            return True
+        else:
+            return False
+
+    @property
+    def is_complete(self) -> bool:
+        total_vertices = len(self.__adj_list)
+        total_edges = sum(len(self.__adj_list[x] for x in self.__adj_list))
+        if total_edges == total_vertices*(total_vertices - 1)/2:
+            return True
+        else:
+            return False
+
+    @property
+    def is_connected(self) -> bool:
+        from algorithms.dfs import dfs
+        list_of_vertices = set(self.__adj_list.keys())
+        visited = set()
+        dfs(self, next(iter(self.__adj_list)), visited)
+        if visited == list_of_vertices:
+            return True
+        else:
+            return False
+
+    @property
     def is_regular(self) -> bool:
         return all(list(x.degree == next(iter(self.vertex_list)).degree for x in self.vertex_list))
 
     # this is different from a cyclic graph
-    # def is_cycle_graph(self) -> bool:
-    #     if len(self.__adj_list.keys()) > 2:
-    #         if self.is_connected() and
+    # a cycle is a connected 2-regular graph
+    @property
+    def is_cycle(self) -> bool:
+        if self.is_connected() and self.is_regular():
+            if all(list(x.degree == 2 for x in self.vertex_list)):
+                return True
+            else:
+                return True
+        else:
+            return False
 
     def __str__(self):
         return str(self.__adj_list)

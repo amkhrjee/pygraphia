@@ -3,7 +3,7 @@ Graph methods:
     - is_regular [done]
     - is_planar 
     - is_cyclic
-    - is_cycle_graph
+    - is_cycle_graph [done]
     - is_complete [done]
     - components_count [done]
 Graph properties:
