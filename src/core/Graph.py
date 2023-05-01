@@ -90,20 +90,14 @@ class Graph:
     def is_complete(self) -> bool:
         total_vertices = len(self.__adj_list)
         total_edges = sum(len(self.__adj_list[x] for x in self.__adj_list))
-        if total_edges == total_vertices*(total_vertices - 1)/2:
-            return True
-        else:
-            return False
+        return total_edges == total_vertices*(total_vertices - 1)/2
 
     @property
     def is_connected(self) -> bool:
         from algorithms.dfs import dfs
         visited = []
         dfs(self, next(iter(self.vertex_list)), visited)
-        if set(visited) == set(self.vertex_list):
-            return True
-        else:
-            return False
+        return set(visited) == set(self.vertex_list)
 
     @property
     def is_regular(self) -> bool:
@@ -113,13 +107,7 @@ class Graph:
     # a cycle is a connected 2-regular graph
     @property
     def is_cycle(self) -> bool:
-        if self.is_connected() and self.is_regular():
-            if all(list(x.degree == 2 for x in self.vertex_list)):
-                return True
-            else:
-                return True
-        else:
-            return False
+        return self.is_connected() and self.is_regular() and all(list(x.degree == 2 for x in self.vertex_list))
 
     @property
     def is_cyclic(self) -> bool:
@@ -136,7 +124,6 @@ class Graph:
                         explore_list.append(each_neighbor)
                     elif (each_neighbor in visited) and each_neighbor != parent:
                         return True
-        return False
 
     @property
     def is_tree(self) -> bool:
