@@ -9,4 +9,6 @@ The main goals are following:
 - Provide useful util functions/properties to be used out of the box.
 - Keep it simple and straightforward.
 
+PyGraphia is under construction and not released on any package repository.
+
 Last updated: May 1, 2023
