@@ -1,5 +1,4 @@
 from core.Vertex import Vertex
-from core.Edge import Edge
 from core.Graph import Graph
 from algorithms.dfs import dfs
 from algorithms.bfs import bfs
@@ -38,7 +37,15 @@ if (test_graph.is_regular):
 else:
     print('Not Regular')
 # print(test_graph)
+if (test_graph.is_cyclic):
+    print('Cyclic')
+else:
+    print('Acyclic')
 
+if (test_graph.is_tree):
+    print('Tree')
+else:
+    print('Not a tree')
 # print the vertex sets
 for vertex in test_graph.vertex_list:
     print(vertex,  " = ", vertex.neighbors)

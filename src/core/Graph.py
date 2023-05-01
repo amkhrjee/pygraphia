@@ -119,5 +119,29 @@ class Graph:
         else:
             return False
 
+    @property
+    def is_cyclic(self) -> bool:
+        visited = []
+        parent: Vertex = None
+        explore_list = [self.vertex_list[0]]
+        while len(explore_list):
+            vertex = explore_list.pop()
+            if vertex not in visited:
+                visited.append(vertex)
+                for each_neighbor in vertex.neighbors:
+                    if each_neighbor not in visited:
+                        parent = vertex
+                        explore_list.append(each_neighbor)
+                    elif (each_neighbor in visited) and each_neighbor != parent:
+                        return True
+        return False
+
+    @property
+    def is_tree(self) -> bool:
+        if self.is_connected and not self.is_cyclic:
+            return True
+        else:
+            return False
+
     def __str__(self):
         return str(self.__adj_list)
