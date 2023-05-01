@@ -1,7 +1,8 @@
 class Vertex:
-    incoming_edges = []
-    outgoing_edges = []
-    neighbors = []
+    incoming_edges = set()
+    outgoing_edges = set()
+    neighbors = set()
+    degree = 0
 
     def __init__(self,
                  label: str = '',
@@ -10,10 +11,10 @@ class Vertex:
         self.indegree = len(self.incoming_edges)
         self.outdegree = len(self.outgoing_edges)
         self.directed = directed
-        if directed:
-            self.degree = self.indegree + self.outdegree
-        else:
-            self.degree = (self.indegree + self.outdegree)/2
+        # if directed:
+        #     self.degree = self.indegree + self.outdegree
+        # else:
+        #     self.degree = int((self.indegree + self.outdegree)/2)
 
     def __repr__(self):
         return self.label
