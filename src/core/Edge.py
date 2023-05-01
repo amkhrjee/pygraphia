@@ -10,9 +10,9 @@ class Edge:
                  directed: bool = False):
         self.src = src
         self.dest = dest
+        self.label = label
         self.weight = weight
         self.directed = directed
-        self.label = label
 
     def __eq__(self, __value: object) -> bool:
         if isinstance(__value, Edge):
@@ -41,4 +41,7 @@ class Edge:
         return hash((self.src, self.dest, self.label))
 
     def __repr__(self):
-        return str(self.src) + ' --> ' + str(self.dest)
+        if self.directed:
+            return str(self.src) + ' --> ' + str(self.dest)
+        else:
+            return str(self.src) + ' -- ' + str(self.dest)

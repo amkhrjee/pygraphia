@@ -8,13 +8,20 @@ class Graph:
         self.__adj_list = {}
         self.__out_adj_list: dict[Vertex, list[Vertex]] = {}  # for digraphs
         self.__directed = directed
-        self.__weighted = weighted
+        # self.__weighted = weighted
         for each_vertex in vertex_list:
             each_vertex.directed = directed
             if each_vertex not in self.__adj_list.keys():
                 self.__adj_list.update({
                     each_vertex: []
                 })
+    # properties
+
+    @property
+    def vertex_list(self) -> list[Vertex]:
+        return list(self.__adj_list)
+
+    # methods
 
     def add_vertex(self, vertex_list: list) -> None:
         for each_vertex in vertex_list:
@@ -23,26 +30,33 @@ class Graph:
                     Vertex(each_vertex, directed=self.__directed): []
                 })
 
-    def add_edge(self, src: Vertex, dest: Vertex, label: str = '', weight: float = 0) -> None:
+    def add_edge(self,
+                 src: Vertex,
+                 dest: Vertex,
+                 label: str = '',
+                 weight: float = 0) -> None:
         # our adj list for digraph only stores vertices
         # that are connected by outwards going edges
-        edge = Edge(src, dest, label, weight)
-        if self.__weighted:
-            for key in self.__adj_list.keys():
-                if key is src:
-                    key.outgoing_edges.append(edge)
-                    key.neighbor.append(dest)
-            dest.incoming_edges.append(edge)
+        outgoing_edge = Edge(src, dest, label, weight, self.__directed)
+        if self.__directed:
+            for vertex in self.__adj_list:
+                if vertex is src:
+                    vertex.outgoing_edges.append(outgoing_edge)
+                    vertex.key.neighbor.append(dest)
+                    break
+            dest.incoming_edges.append(outgoing_edge)
             self.__out_adj_list[src].append(dest)
         else:
-            for key in self.__adj_list.keys():
-                if key is src:
-                    key.neighbors.append(dest)
-                    dest.neighbors.append(key)
-                    key.outgoing_edges.append(edge)
-                    key.incoming_edges.append(edge)
-            dest.incoming_edges.append(edge)
-            dest.outgoing_edges.append(edge)
+            incoming_edge = Edge(dest, src, label, weight, self.__directed)
+            for vertex in self.__adj_list:
+                if vertex is src:
+                    vertex.neighbors.append(dest)
+                    vertex.outgoing_edges.append(outgoing_edge)
+                    vertex.incoming_edges.append(incoming_edge)
+                    break
+            dest.neighbors.append(src)
+            dest.incoming_edges.append(outgoing_edge)
+            dest.outgoing_edges.append(incoming_edge)
         self.__adj_list[src].append(dest)
         self.__adj_list[dest].append(src)
 
