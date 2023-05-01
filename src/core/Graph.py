@@ -29,19 +29,22 @@ class Graph:
         edge = Edge(src, dest, label, weight)
         if self.__weighted:
             for key in self.__adj_list.keys():
-                if key == src:
-                    key.outgoing_edges.add(edge)
-                    key.neighbor.add(dest)
-            dest.incoming_edges.add(edge)
+                if key is src:
+                    key.outgoing_edges.append(edge)
+                    key.neighbor.append(dest)
+            dest.incoming_edges.append(edge)
             self.__out_adj_list[src].append(dest)
         else:
             for key in self.__adj_list.keys():
-                if key == src:
-                    self.__adj_list[key].append(dest)
-                    key.incoming_edges.add(edge)
-                    # key.outgoing_edges.add(edge)
-
-            self.__adj_list[dest].append(src)
+                if key is src:
+                    key.neighbors.append(dest)
+                    dest.neighbors.append(key)
+                    key.outgoing_edges.append(edge)
+                    key.incoming_edges.append(edge)
+            dest.incoming_edges.append(edge)
+            dest.outgoing_edges.append(edge)
+        self.__adj_list[src].append(dest)
+        self.__adj_list[dest].append(src)
 
     def is_regular(self) -> bool:
         if all(x.degree ==

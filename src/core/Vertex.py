@@ -1,7 +1,7 @@
 class Vertex:
-    incoming_edges = set()
-    outgoing_edges = set()
-    neighbors = set()
+    incoming_edges = []
+    outgoing_edges = []
+    neighbors = []
     degree = 0
 
     def __init__(self,
