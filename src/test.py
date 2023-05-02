@@ -52,5 +52,7 @@ if (test_graph.is_eulerian):
 else:
     print('Not Eulerian')
 # print the vertex sets
-for vertex in test_graph.vertex_list:
-    print(vertex,  " = ", vertex.neighbors)
+# for vertex in test_graph.vertex_list:
+#     print(vertex,  " = ", vertex.neighbors)
+
+print(test_graph.get_shortest_path(v0, v4))

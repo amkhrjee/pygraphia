@@ -7,7 +7,17 @@ Graph methods:
     - is_complete [done]
     - components_count [done]
 
-current bugs:
+current goals: 
+    - minimum spanning treee
+        - prim and kruskal 
+            - dynamically select algo based on situation
+        - vertex cover and edge cover 
+        - djisktra
+        - a*
+        - look into other useful properties
 
 current work: 
-    
+    - mst algos: prim, kruskal, 
+    - shortest path:
+        - input: src, dest 
+        - output: dict[vertex : shortest_path_dist]

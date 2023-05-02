@@ -133,5 +133,7 @@ class Graph:
     def is_eulerian(self) -> bool:
         return self.is_connected and all(list(x.degree // 2 == 0 for x in self.vertex_list))
 
+    # def get_shortest_path(self, src: Vertex, dest: Vertex) -> list[Vertex]:
+
     def __str__(self):
         return str(self.__adj_list)
