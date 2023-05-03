@@ -1,12 +1,35 @@
+from .Edge import Edge
+
+
 class Vertex:
     def __init__(self,
                  label: str = '',
                  directed: bool = False):
-        self.label = label
-        self.directed = directed
-        self.incoming_edges = []
-        self.outgoing_edges = []
-        self.neighbors = []
+        self.___label = label
+        self.__directed = directed
+        self.__incoming_edges = []
+        self.__outgoing_edges = []
+        self.__neighbors = []
+
+    @property
+    def label(self) -> str:
+        return self.___label
+
+    @property
+    def directed(self) -> bool:
+        return self.__directed
+
+    @property
+    def incoming_edges(self) -> list[Edge]:
+        return self.__incoming_edges
+
+    @property
+    def outgoing_edges(self) -> list[Edge]:
+        return self.__outgoing_edges
+
+    @property
+    def neighbors(self) -> list:
+        return self.__neighbors
 
     @property
     def edges(self) -> int:

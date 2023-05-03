@@ -13,7 +13,7 @@ class Graph:
         self.__out_adj_list: dict[Vertex, list[Vertex]] = {}  # for digraphs
         self.__directed = directed
         for each_vertex in vertex_list:
-            each_vertex.directed = directed
+            each_vertex.__directed = directed  # todo: fix this private var access
             if each_vertex not in self.__adj_list.keys():
                 self.__adj_list.update({
                     each_vertex: []

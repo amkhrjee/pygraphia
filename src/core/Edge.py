@@ -8,11 +8,31 @@ class Edge:
                  label: list = '',
                  weight: float = 0,
                  directed: bool = False):
-        self.src = src
-        self.dest = dest
-        self.label = label
-        self.weight = weight
-        self.directed = directed
+        self.__src = src
+        self.__dest = dest
+        self.__label = label
+        self.__weight = weight
+        self.__directed = directed
+
+    @property
+    def label(self) -> str:
+        return self.__label
+
+    @property
+    def weight(self) -> float:
+        return self.__weight
+
+    @property
+    def src(self) -> Vertex:
+        return self.__src
+
+    @property
+    def dest(self) -> Vertex:
+        return self.__dest
+
+    @property
+    def directed(self) -> bool:
+        return self.__directed
 
     def __eq__(self, __value: object) -> bool:
         if isinstance(__value, Edge):
