@@ -1,6 +1,6 @@
 from .Vertex import Vertex
 from .Edge import Edge
-
+# from .Path import Path
 # Helpful for graph theory jargon: https://en.wikipedia.org/wiki/Glossary_of_graph_theory
 
 
@@ -133,7 +133,25 @@ class Graph:
     def is_eulerian(self) -> bool:
         return self.is_connected and all(list(x.degree // 2 == 0 for x in self.vertex_list))
 
-    # def get_shortest_path(self, src: Vertex, dest: Vertex) -> list[Vertex]:
+    # def get_shortest_path(self, src: Vertex, dest: Vertex) -> Path:
+    def get_shortest_path(self, src: Vertex, dest: Vertex) -> list:
+        from collections import deque
+        visited = set()
+        # explore_queue = deque((src, Path(src)))
+        explore_queue = deque([(src, [])])
+        while len(explore_queue):
+            vertex, path = explore_queue.popleft()
+            if vertex == dest:
+                # path.add(vertex)
+                return path + [vertex]
+            else:
+                visited.add(vertex)
+                for neighbor in vertex.neighbors:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        # path.add(vertex)
+                        explore_queue.append((neighbor, path + [vertex]))
+        return []
 
     def __str__(self):
         return str(self.__adj_list)
