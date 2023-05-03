@@ -55,4 +55,4 @@ else:
 # for vertex in test_graph.vertex_list:
 #     print(vertex,  " = ", vertex.neighbors)
 
-print(test_graph.get_shortest_path(v4, v2))
+print(test_graph.get_shortest_path(v4, vTest))

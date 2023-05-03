@@ -1,22 +1,25 @@
 from .Vertex import Vertex
 from .Edge import Edge
-# from .Path import Path
+from .Path import Path
 # Helpful for graph theory jargon: https://en.wikipedia.org/wiki/Glossary_of_graph_theory
 
 
 class Graph:
 
-    def __init__(self, vertex_list: list[Vertex] = [], directed: bool = False, weighted: bool = False):
+    def __init__(self,
+                 vertex_list: list[Vertex] = [], /, *,
+                 directed: bool = False):
         self.__adj_list = {}
         self.__out_adj_list: dict[Vertex, list[Vertex]] = {}  # for digraphs
         self.__directed = directed
-        # self.__weighted = weighted
         for each_vertex in vertex_list:
             each_vertex.directed = directed
             if each_vertex not in self.__adj_list.keys():
                 self.__adj_list.update({
                     each_vertex: []
                 })
+
+    # def
 
     # methods
 
@@ -70,6 +73,26 @@ class Graph:
             if len(left_out_vertices) > 0:
                 temp_vertices.append(next(iter(left_out_vertices)))
         return len(temp_vertices)
+
+    def get_shortest_path(self, src: Vertex, dest: Vertex) -> Path:
+        # todo: add option for floyd warshall https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
+        # todo: make Path and Walk objects
+        from collections import deque
+        visited = set()
+        explore_queue = deque([(src, Path(src))])
+        while len(explore_queue):
+            vertex, path = explore_queue.popleft()
+            if vertex == dest:
+                path.add(vertex)
+                return path
+            else:
+                visited.add(vertex)
+                for neighbor in vertex.neighbors:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        path.add(vertex)
+                        explore_queue.append((neighbor, path))
+        return Path()
 
     # properties
 
@@ -132,26 +155,6 @@ class Graph:
     @property
     def is_eulerian(self) -> bool:
         return self.is_connected and all(list(x.degree // 2 == 0 for x in self.vertex_list))
-
-    # def get_shortest_path(self, src: Vertex, dest: Vertex) -> Path:
-    def get_shortest_path(self, src: Vertex, dest: Vertex) -> list:
-        from collections import deque
-        visited = set()
-        # explore_queue = deque((src, Path(src)))
-        explore_queue = deque([(src, [])])
-        while len(explore_queue):
-            vertex, path = explore_queue.popleft()
-            if vertex == dest:
-                # path.add(vertex)
-                return path + [vertex]
-            else:
-                visited.add(vertex)
-                for neighbor in vertex.neighbors:
-                    if neighbor not in visited:
-                        visited.add(neighbor)
-                        # path.add(vertex)
-                        explore_queue.append((neighbor, path + [vertex]))
-        return []
 
     def __str__(self):
         return str(self.__adj_list)
