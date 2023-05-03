@@ -21,3 +21,5 @@ current work:
     - shortest path:
         - input: src, dest 
         - output: dict[vertex : shortest_path_dist]
+    - floyd warshall for finding shortest path between any two nodes - O(v^3) [bad]
+    - bfs is good for apsp 
