@@ -92,7 +92,7 @@ class Graph:
                         visited.add(neighbor)
                         path.add(vertex)
                         explore_queue.append((neighbor, path))
-        return Path()
+        return None
 
     # properties
 
