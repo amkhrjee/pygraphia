@@ -19,7 +19,8 @@ class Graph:
                     each_vertex: []
                 })
 
-    # def
+    def __getitem__(self, vertex: Vertex):
+        return self.__adj_list[vertex]
 
     # methods
 
@@ -76,7 +77,6 @@ class Graph:
 
     def get_shortest_path(self, src: Vertex, dest: Vertex) -> Path:
         # todo: add option for floyd warshall https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
-        # todo: make Path and Walk objects
         from collections import deque
         visited = set()
         explore_queue = deque([(src, Path(src))])
