@@ -3,7 +3,7 @@ from core.Vertex import Vertex
 from collections import deque
 
 
-def bfs(graph: Graph, start_vertex: Vertex, visited: list) -> None:
+def bfs(graph: Graph, start_vertex: Vertex, visited: list):
     explore_queue = deque([start_vertex])
     while len(explore_queue):
         vertex = explore_queue.popleft()

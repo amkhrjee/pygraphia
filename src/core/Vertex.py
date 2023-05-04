@@ -1,19 +1,24 @@
-from .Edge import Edge
+from __future__ import annotations
+from typing import TYPE_CHECKING
+from typing import List
+if TYPE_CHECKING:
+    from .Edge import Edge
 
 
 class Vertex:
+
     def __init__(self,
                  label: str = '',
                  directed: bool = False):
-        self.___label = label
+        self.__label = label
         self.__directed = directed
-        self.__incoming_edges = []
-        self.__outgoing_edges = []
-        self.__neighbors = []
+        self.__incoming_edges: List[Edge] = []
+        self.__outgoing_edges: List[Edge] = []
+        self.__neighbors: List[Vertex] = []
 
     @property
     def label(self) -> str:
-        return self.___label
+        return self.__label
 
     @property
     def directed(self) -> bool:
@@ -32,7 +37,7 @@ class Vertex:
         return self.__neighbors
 
     @property
-    def edges(self) -> int:
+    def edges(self) -> List[Edge]:
         if self.directed:
             return self.incoming_edges + self.outgoing_edges
         else:
@@ -64,6 +69,8 @@ class Vertex:
         if isinstance(__value, Vertex):
             if __value.label == self.label:
                 return True
+            else:
+                return False
         else:
             return False
 

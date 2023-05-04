@@ -1,11 +1,11 @@
-from . import Vertex
+from core.Vertex import Vertex
 
 
 class Edge:
     def __init__(self,
                  src: Vertex,
                  dest: Vertex,
-                 label: list = '',
+                 label: str = '',
                  weight: float = 0,
                  directed: bool = False):
         self.__src = src
@@ -60,6 +60,7 @@ class Edge:
     def __lt__(self, __value) -> bool:
         if isinstance(__value, Edge):
             return self.weight < __value.weight
+        return False
 
     def __hash__(self) -> int:
         return hash((self.src, self.dest, self.label))

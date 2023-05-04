@@ -1,4 +1,4 @@
-# PyGraphia
+PyGraphia
 
 PyGraphia aims to be a minimalist graph library to help you implement graph algorithms out of the box. 
 
