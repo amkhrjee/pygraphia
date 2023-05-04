@@ -36,7 +36,7 @@ class Vertex:
         if self.directed:
             return self.incoming_edges + self.outgoing_edges
         else:
-            return self.incoming_edges
+            return self.outgoing_edges
 
     @property
     def indegree(self) -> int:

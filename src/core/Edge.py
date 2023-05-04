@@ -45,10 +45,10 @@ class Edge:
                 else:
                     return False
             else:
-                if (__value.src == self.src
-                        and __value.dest == self.dest) \
-                        or (__value.src == __value.dest
-                            and __value.dest == self.src) \
+                if ((__value.src == self.src
+                        and __value.dest == self.dest)
+                        or (__value.src == self.dest
+                            and __value.dest == self.src)) \
                         and __value.weight == self.weight \
                         and __value.label == self.label:
                     return True
@@ -56,6 +56,10 @@ class Edge:
                     return False
         else:
             return False
+
+    def __lt__(self, __value) -> bool:
+        if isinstance(__value, Edge):
+            return self.weight < __value.weight
 
     def __hash__(self) -> int:
         return hash((self.src, self.dest, self.label))

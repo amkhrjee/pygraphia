@@ -97,6 +97,10 @@ class Graph:
     # properties
 
     @property
+    def directed(self) -> bool:
+        return self.__directed
+
+    @property
     def vertex_list(self) -> list[Vertex]:
         return list(self.__adj_list)
 
