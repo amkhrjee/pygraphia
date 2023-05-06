@@ -1,9 +1,0 @@
-{
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8"
-    },
-    "python.formatting.provider": "none",
-    "esbonio.sphinx.confDir": "",
-    "python.linting.mypyEnabled": true,
-    "python.linting.enabled": true
-}
