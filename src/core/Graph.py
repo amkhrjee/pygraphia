@@ -6,6 +6,41 @@ from typing import List
 
 
 class Graph:
+    """Main Graph class containing the necessary data structure, properties and methods.
+
+    Note: This class contains immutable private variables that can only be accessed via properties.
+
+    Properties
+    ___________
+
+    directed: bool
+        Whether the graph is directed or not
+
+    is_regular: bool
+        Whether the graph is regular or not. 
+
+    is_tree: bool
+        Whether the graph is tree or not.
+
+    is_eulerian: bool
+        Whether the graphWhether the graph is eulerian or not.
+
+    is_connected: bool
+        Whether the graph is connected ot not.
+
+    is_complete: bool
+        Whether the graph is complete or not.
+
+    is_cylclic: bool
+        Whether the graph is cyclic or not.
+
+    is_cycle: bool
+        Whether the graph is a cycle or not.
+
+    vertex_list: list[Vertex]
+        List of vertices of the graph.
+
+    """
 
     def __init__(self,
                  vertex_list: List[Vertex] = [], /, *,
@@ -29,6 +64,14 @@ class Graph:
     # methods
 
     def add_vertex(self, vertex_list: List[Vertex]):
+        """Add vertex/vertices to the graph.
+
+        Args:
+            vertex_list (List[Vertex]): list of vertex/vertices to be added.
+
+        Raises:
+            TypeError: Contents of list must be of the type Vertex.
+        """
         for each_vertex in vertex_list:
             if each_vertex is Vertex:
                 if each_vertex not in self.__adj_list.keys():
@@ -44,16 +87,24 @@ class Graph:
                  dest: Vertex,
                  label: str = '',
                  weight: float = 0):
+        """Add edge between two existing vertices
+
+        Args:
+            src (Vertex): The source vertex
+            dest (Vertex): The destination vertex
+            label (str, optional): Label of the edge. Defaults to ''.
+            weight (float, optional): Weight/cost of associated with the edge. Defaults to 0.
+        """
         # our adj list for digraph only stores vertices
         # that are connected by outwards going edges
 
         # exceptions
-        if not isinstance(src, Vertex):
-            raise TypeError("src should be of the type Vertex")
-        if not isinstance(dest, Vertex):
-            raise TypeError("dest should be of the type Vertex")
-        if not isinstance(label, str):
-            raise TypeError("label should be of the type str")
+        # if not isinstance(src, Vertex):
+        #     raise TypeError("src should be of the type Vertex")
+        # if not isinstance(dest, Vertex):
+        #     raise TypeError("dest should be of the type Vertex")
+        # if not isinstance(label, str):
+        #     raise TypeError("label should be of the type str")
 
         outgoing_edge = Edge(src, dest, label, weight, self.__directed)
         if self.__directed:
@@ -79,6 +130,11 @@ class Graph:
         self.__adj_list[dest].append(src)
 
     def components_count(self) -> int:
+        """Counts the components of the graph.
+
+        Returns:
+            int:The number of components.
+        """
         from algorithms.dfs import dfs
         start_vertex = next(iter(self.__adj_list))
         temp_vertices = [start_vertex]
@@ -93,6 +149,15 @@ class Graph:
         return len(temp_vertices)
 
     def get_shortest_path(self, src: Vertex, dest: Vertex) -> Path:
+        """Uses BFS to find the shortest path between two vertices.
+
+        Args:
+            src (Vertex): The source vertex.
+            dest (Vertex): The destination vertex.
+
+        Returns:
+            Path: The shortest path. 
+        """
         # todo: add option for floyd warshall https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
         from collections import deque
         visited = set()
@@ -120,15 +185,6 @@ class Graph:
     @property
     def vertex_list(self) -> List[Vertex]:
         return list(self.__adj_list)
-
-    # @property
-    # def is_regular(self) -> bool:
-    #     if all(x.degree ==
-    #            list(self.__adj_list.keys())[0].degree
-    #            for x in self.__adj_list.keys()):
-    #         return True
-    #     else:
-    #         return False
 
     @property
     def is_complete(self) -> bool:

@@ -2,6 +2,30 @@ from core.Vertex import Vertex
 
 
 class Edge:
+    """The Edge class conatining the necessary properties for an edge.
+
+    Note: This class contains immutable private variables that can only be accessed via properties.
+
+    Properties
+    ___________
+
+    label: str
+        Label of the edge.
+
+    weight: float
+        Weight/cost associated with the edge.
+
+    src: Vertex
+        The source vertex of the edge.
+
+    dest: Vertex
+        The destination vertex of the edge.
+
+    directed: bool
+        Whether the edge is directed or not.
+
+    """
+
     def __init__(self,
                  src: Vertex,
                  dest: Vertex,

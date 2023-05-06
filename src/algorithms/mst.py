@@ -6,6 +6,15 @@ from typing import Tuple
 
 
 def get_mst(graph: Graph, start_vertex: Vertex = None) -> Tuple[list[Edge], float]:
+    """Finds the MST of a given graph.
+
+    Args:
+        graph (Graph): The graph to find MST out of.
+        start_vertex (Vertex, optional): The starting vertex. Defaults to Starting Vertex.
+
+    Returns:
+        Tuple[list[Edge], float]: list of edges comprising the MST and the total cost of the MST.
+    """
     #     Inspired by William Fiset's Java implementation of Prim's algorithm: https://github.com/williamfiset/Algorithms
     if start_vertex == None:
         start_vertex = graph.vertex_list[0]
@@ -30,4 +39,4 @@ def get_mst(graph: Graph, start_vertex: Vertex = None) -> Tuple[list[Edge], floa
     if len(mst_edges) == total_mst_edge_count:
         return mst_edges, mst_cost
     else:
-        return None, 0
+        return [], 0

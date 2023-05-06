@@ -5,6 +5,17 @@ from typing import List
 
 @dataclass()
 class Walk:
+    """Class defining a walk.
+
+    Attributes
+    ___________
+    vertex_list: list[Vertex]
+        The list of verties in the walk.
+
+    is_empty: bool
+        Whether the walk is empty or not.
+
+    """
 
     vertex_list: List[Vertex] = field(default_factory=list)
     is_empty: bool = False
@@ -16,6 +27,11 @@ class Walk:
             self.is_empty = True
 
     def add(self, vertex: Vertex):
+        """Add a vertex to the walk.
+
+        Args:
+            vertex (Vertex): The vertex to be added to the walk.
+        """
         self.vertex_list.append(vertex)
 
     def __repr__(self) -> str:

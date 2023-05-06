@@ -1,11 +1,46 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 from typing import List
+# turning this check off will result in import loop
 if TYPE_CHECKING:
     from .Edge import Edge
 
 
 class Vertex:
+    """The Vertex class containing the necessary properties for defining a Vertex.
+
+    Note: This class contains immutable private variables that can only be accessed via properties.
+
+    label: str
+        The label of the Vertex.
+
+    directed: bool
+        Whether the vertex is part of a directed graph or not.
+
+    incoming_edges: list[Edge]
+        Lists the incoming edges of the vertex.
+
+    outgoing_edges: list[Edge]
+        Lists the outgoing edges of the vertex.
+
+    neighbors: list[Vertex]
+        List of neighboring vertices.
+
+    edges: list[Edge]
+        List of all edges. For undirected graph, defaults to outgoing edges.
+
+    indegree: int
+        The indegree of the vertex.
+
+    outdegree: int
+        The outdegree of the vertex.
+
+    degree: int
+        The degree of the vertex= indegree + outdegree.
+
+
+
+    """
 
     def __init__(self,
                  label: str = '',
