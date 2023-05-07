@@ -2,7 +2,7 @@
 PyGraphia
 ===========
 
-> PyGraphia is in early development phase.
+:: PyGraphia is in early development phase.
 
 PyGraphia aims to be a minimalist graph library to help you implement graph algorithms out of the box. 
 
