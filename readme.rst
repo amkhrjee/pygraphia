@@ -1,7 +1,7 @@
 ===========
 PyGraphia
 ===========
-```txt
+```
 PyGraphia is in early development phase.
 ```
 PyGraphia aims to be a minimalist graph library to help you implement graph algorithms out of the box. 
@@ -20,6 +20,7 @@ Future goals:
 - More support for directed graphs
 - Thorough testing setup
 - Thorough documentation
+- CI/CD setup
 
 Currently development time constrainted due to my busy university schedule. Hopefully I will be able to invest more time next month.
 
