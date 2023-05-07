@@ -135,7 +135,7 @@ class Graph:
         Returns:
             int:The number of components.
         """
-        from algorithms.dfs import dfs
+        from pygraphia.algorithms.dfs import dfs
         start_vertex = next(iter(self.__adj_list))
         temp_vertices = [start_vertex]
         list_of_vertices = set(self.__adj_list.keys())
@@ -194,7 +194,7 @@ class Graph:
 
     @property
     def is_connected(self) -> bool:
-        from algorithms.dfs import dfs
+        from pygraphia.algorithms.dfs import dfs
         visited: List[Vertex] = []
         dfs(self, next(iter(self.vertex_list)), visited)
         return set(visited) == set(self.vertex_list)

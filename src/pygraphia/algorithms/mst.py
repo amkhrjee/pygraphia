@@ -1,7 +1,7 @@
 import heapq
-from core.Graph import Graph
-from core.Vertex import Vertex
-from core.Edge import Edge
+from pygraphia.core.Graph import Graph
+from pygraphia.core.Vertex import Vertex
+from pygraphia.core.Edge import Edge
 from typing import Tuple
 
 

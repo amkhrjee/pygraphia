@@ -1,5 +1,5 @@
-from core.Graph import Graph
-from core.Vertex import Vertex
+from pygraphia.core.Graph import Graph
+from pygraphia.core.Vertex import Vertex
 
 
 def dfs(graph: Graph, start_vertex: Vertex, visited: list):
