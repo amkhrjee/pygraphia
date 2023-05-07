@@ -40,4 +40,5 @@ push = true
     'current_version = "{version}"',
     'version = "{version}"',
 ]
+"src/pygraphia/__init__.py" = ["{version}"]
 
