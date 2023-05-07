@@ -161,3 +161,4 @@ cython_debug/
  *.todo
  .vscode/
 .pypirc
+config.pypirc
