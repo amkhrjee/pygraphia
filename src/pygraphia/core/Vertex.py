@@ -1,6 +1,5 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
-from typing import List
 # turning this check off will result in import loop
 if TYPE_CHECKING:
     from .Edge import Edge
@@ -47,9 +46,9 @@ class Vertex:
                  directed: bool = False):
         self.__label = label
         self.__directed = directed
-        self.__incoming_edges: List[Edge] = []
-        self.__outgoing_edges: List[Edge] = []
-        self.__neighbors: List[Vertex] = []
+        self.__incoming_edges: list[Edge] = []
+        self.__outgoing_edges: list[Edge] = []
+        self.__neighbors: list[Vertex] = []
 
     @property
     def label(self) -> str:
@@ -72,7 +71,7 @@ class Vertex:
         return self.__neighbors
 
     @property
-    def edges(self) -> List[Edge]:
+    def edges(self) -> list[Edge]:
         if self.directed:
             return self.incoming_edges + self.outgoing_edges
         else:

@@ -1,7 +1,6 @@
 from .Vertex import Vertex
 from .Edge import Edge
 from .Path import Path
-from typing import List
 # Helpful for graph theory jargon: https://en.wikipedia.org/wiki/Glossary_of_graph_theory
 
 
@@ -43,10 +42,10 @@ class Graph:
     """
 
     def __init__(self,
-                 vertex_list: List[Vertex] = [], /, *,
+                 vertex_list: list[Vertex] = [], /, *,
                  directed: bool = False):
-        self.__adj_list: dict[Vertex, List[Vertex]] = {}
-        self.__out_adj_list: dict[Vertex, List[Vertex]] = {}  # for digraphs
+        self.__adj_list: dict[Vertex, list[Vertex]] = {}
+        self.__out_adj_list: dict[Vertex, list[Vertex]] = {}  # for digraphs
         self.__directed = directed
         for each_vertex in vertex_list:
             if isinstance(each_vertex, Vertex):
@@ -63,11 +62,11 @@ class Graph:
 
     # methods
 
-    def add_vertex(self, vertex_list: List[Vertex]):
+    def add_vertex(self, vertex_list: list[Vertex]):
         """Add vertex/vertices to the graph.
 
         Args:
-            vertex_list (List[Vertex]): list of vertex/vertices to be added.
+            vertex_list (list[Vertex]): list of vertex/vertices to be added.
 
         Raises:
             TypeError: Contents of list must be of the type Vertex.
@@ -140,7 +139,7 @@ class Graph:
         temp_vertices = [start_vertex]
         list_of_vertices = set(self.__adj_list.keys())
         for each_vertex in temp_vertices:
-            visited: set = set()
+            visited: list[Vertex] = []
             dfs(self, each_vertex, visited)
             left_out_vertices = [
                 x for x in list_of_vertices if x not in visited]
@@ -183,7 +182,7 @@ class Graph:
         return self.__directed
 
     @property
-    def vertex_list(self) -> List[Vertex]:
+    def vertex_list(self) -> list[Vertex]:
         return list(self.__adj_list)
 
     @property
@@ -195,7 +194,7 @@ class Graph:
     @property
     def is_connected(self) -> bool:
         from pygraphia.algorithms.dfs import dfs
-        visited: List[Vertex] = []
+        visited: list[Vertex] = []
         dfs(self, next(iter(self.vertex_list)), visited)
         return set(visited) == set(self.vertex_list)
 

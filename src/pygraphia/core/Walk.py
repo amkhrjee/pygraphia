@@ -1,6 +1,5 @@
 from .Vertex import Vertex
 from dataclasses import dataclass, field
-from typing import List
 
 
 @dataclass()
@@ -17,7 +16,7 @@ class Walk:
 
     """
 
-    vertex_list: List[Vertex] = field(default_factory=list)
+    vertex_list: list[Vertex] = field(default_factory=list)
     is_empty: bool = False
 
     def __init__(self, vertex: Vertex | None):
