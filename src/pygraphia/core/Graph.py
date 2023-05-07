@@ -187,9 +187,12 @@ class Graph:
 
     @property
     def is_complete(self) -> bool:
-        total_vertices = len(self.__adj_list)
+        total_vertices = len(self.vertex_list)
         total_edges = sum(len(self.__adj_list[x]) for x in self.__adj_list)
-        return total_edges == total_vertices*(total_vertices - 1)/2
+        if self.directed:
+            return total_edges == total_vertices*(total_vertices - 1)/2
+        else:
+            return total_edges/2 == total_vertices*(total_vertices - 1)/2
 
     @property
     def is_connected(self) -> bool:
